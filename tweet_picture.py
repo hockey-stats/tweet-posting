@@ -1,0 +1,90 @@
+import re
+import os
+import json
+import requests
+import tweepy
+
+from argparse import ArgumentParser
+
+
+# Set env variables from repo secrets
+API_KEY = os.environ['API_KEY']
+API_SECRET = os.environ['API_SECRET']
+ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
+ACCESS_TOKEN_SECRET = os.environ['ACCESS_TOKEN_SECRET']
+
+
+def send_tweet(media_id, tweet_body):
+  """
+  Sends a tweet with the image denoted by the media_id, and the tweet_body as the text.
+  Uses the requests library.
+  :param str media_id: Identifier for media which was uploaded and is ready to send.
+  :param str tweet_body: Text to send alongside the media in the tweet.
+  """
+
+  url = 'https://api.twitter.com/2/tweets'
+
+  payload = json.dumps({
+    "text": tweet_body,
+    "media": {
+      "media_ids": [media_id]
+    }
+  })
+
+  headers = {
+    'Content-Type': 'application/json',
+    'Authorization': f'OAuth oauth_consumer_key="{API_KEY}",'\
+                    f'oauth_token="{ACCESS_TOKEN}",'\
+                    f'oauth_signature_method="HMAC-SHA1",'\
+                    f'oauth_timestamp="1698858554",'\
+                    f'oauth_nonce="fhVdDETkTSl",'\
+                    f'oauth_version="1.0",'\
+                    f'oauth_signature="vXpfIyZK1EAnsU%2BUFo8zrH%2F%2FQUY%3D"',
+    'Cookie': 'guest_id=v1%3A169885551955971469; lang=en'
+  }
+
+  response = requests.request("POST", url, headers=headers, data=payload)
+  
+  print(response.json())
+  print(response.text)
+
+def upload_media(image):
+  """
+  Given the path to an image file, upload that image to Twitter servers using
+  tweepy, gather the resulting media_id value, and return it.
+  :param str image: Path to image file.
+  :return str media_id: ID value for media which was uploaded, used to send tweet.
+  """
+
+  if not os.path.isfile(image):
+    raise FileNotFoundError(f"Image file {image} not found, aborting...")
+
+  tweepy_auth = tweepy.OAuth1UserHandler(
+    f"{API_KEY}",
+    f"{API_SECRET}",
+    f"{ACCESS_TOKEN}",
+    f"{ACCESS_TOKEN_SECRET}"
+  )
+
+  tweepy_api = tweepy.API(tweepy_auth)
+  post = tweepy_api.simple_upload(image)
+  media_id = re.search("media_id=(.+?),", str(post)).group(1)
+  print(media_id)
+  return media_id
+
+
+def main(image, text):
+
+  media_id = upload_media(image)
+  send_tweet(media_id=media_id, tweet_body=text)
+
+
+if __name__ == '__main__':
+  parser = ArgumentParser()
+  parser.add_argument('-i', '--image', required=True,
+                      help='Path to image file which is to be tweeted.')
+  parser.add_argument('-t', '--text', default='',
+                      help='Text to be tweeted alongside image, defaults to empty string.')
+  args = parser.parse_args()
+
+  main(image=args.image, text=args.text)
