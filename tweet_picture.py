@@ -5,6 +5,8 @@ import requests
 import tweepy
 
 from argparse import ArgumentParser
+from hashlib import sha1
+from requests_oauthlib import OAuth1
 
 
 # Set env variables from repo secrets
@@ -33,19 +35,12 @@ def send_tweet(media_id, tweet_body):
 
   headers = {
     'Content-Type': 'application/json',
-    'Authorization': f'OAuth oauth_consumer_key="{API_KEY}",'\
-                    f'oauth_token="{ACCESS_TOKEN}",'\
-                    f'oauth_signature_method="HMAC-SHA1",'\
-                    f'oauth_timestamp="1698858554",'\
-                    f'oauth_nonce="fhVdDETkTSl",'\
-                    f'oauth_version="1.0",'\
-                    f'oauth_signature="vXpfIyZK1EAnsU%2BUFo8zrH%2F%2FQUY%3D"',
-    'Cookie': 'guest_id=v1%3A169885551955971469; lang=en'
   }
 
-  response = requests.request("POST", url, headers=headers, data=payload)
+  auth = OAuth1(API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+
+  response = requests.request("POST", url, headers=headers, auth=auth, data=payload)
   
-  print(response.json())
   print(response.text)
 
 def upload_media(image):
