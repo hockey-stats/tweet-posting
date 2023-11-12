@@ -41,5 +41,5 @@ jobs:
       - name: Send Tweet
         run: |
           ls -lrt; 
-          python3 tweet_picture.py -i xg_ratios.png -t "5v5 on-ice xG results for all teams #NHL";
+          python3 tweet_picture.py -i team-plots/xg_ratios.png -t "5v5 on-ice xG results for all teams #NHL";
     ###
