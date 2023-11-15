@@ -1,7 +1,8 @@
 name: Tweet Toronto Skater xG Ratios Plot
 on:
   schedule:
-    - cron: 0 14 * * *
+    - cron: 30 * * * *
+    #- cron: 0 14 * * *
 
   workflow_dispatch:
     
