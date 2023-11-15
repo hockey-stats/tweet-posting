@@ -4,8 +4,6 @@ on:
     - cron: 0 15 * * *
 
   workflow_dispatch:
-
-  push:
     
 jobs:
   gather-plot:
