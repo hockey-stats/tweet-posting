@@ -18,6 +18,7 @@ jobs:
         run: |
           echo ${{ github.actor }};
           echo ${{ github.event }};
+          echo ${{ github.event_name }};
           echo ${{ github.event.schedule }}
       
 
