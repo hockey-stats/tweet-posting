@@ -7,14 +7,25 @@ on:
     inputs:
       team:
         type: string
-        default: 'TOR'
+        default: "TOR"
     
 jobs:
+  check-input:
+    runs-on: ubuntu-latest
+    ###
+    steps:
+      - name: Check input
+        run: |
+          echo ${{ github.actor }};
+          echo ${{ github.event }};
+          echo ${{ github.event.schedule }}
+      
+
   gather-plot:
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_tables.yml@main
     with:
-      team: ${{ inputs.team }}
-      minimum_icetime: 120
+      team: "TOR"
+      minimum_icetime: 250
 
   tweet-plot:
     runs-on: ubuntu-latest
