@@ -1,4 +1,4 @@
-name: Tweet Single-Team Skater xG Ratios Plot
+name: Tweet Single-Team Forward Scoring Rates
 on:
   schedule:
     - cron: 30 16 * * */2
