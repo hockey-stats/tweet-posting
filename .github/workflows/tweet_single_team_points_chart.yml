@@ -10,7 +10,7 @@ on:
         default: "TOR"
 
       icetime:
-        type: number
+        type: string
         default: '10'
     
 jobs:
