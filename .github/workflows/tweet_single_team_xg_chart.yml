@@ -11,7 +11,7 @@ on:
 
       icetime:
         type: number
-        default: 250
+        default: 50
     
 jobs:
   ############
