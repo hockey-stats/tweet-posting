@@ -10,8 +10,8 @@ on:
         default: "TOR"
 
       icetime:
-        type: number
-        default: 250
+        type: string
+        default: "10"
     
 jobs:
   ############
@@ -22,7 +22,7 @@ jobs:
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_points.yml@main
     with:
       team: ${{ inputs.team }}
-      minimum_icetime: 250
+      minimum_icetime: ${{ inputs.icetime }}
   
   tweet-plot-manual:
     runs-on: ubuntu-latest

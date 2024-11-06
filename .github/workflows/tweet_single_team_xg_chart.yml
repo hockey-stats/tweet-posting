@@ -22,7 +22,7 @@ jobs:
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_tables.yml@main
     with:
       team: ${{ inputs.team }}
-      minimum_icetime: 250
+      minimum_icetime: ${{ inputs.icetime }}
   
   tweet-plot-manual:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_tables.yml@main
     with:
       team: "TOR"
-      minimum_icetime: 250
+      minimum_icetime: 50
 
   tweet-plot-schedule:
     runs-on: ubuntu-latest

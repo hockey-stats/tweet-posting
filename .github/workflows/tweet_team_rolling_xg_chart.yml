@@ -9,7 +9,7 @@ jobs:
   gather-plot:
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_team_xg_rolling_avg.yml@main
     with:
-      year: 2023
+      year: 2024
 
   tweet-plot:
     runs-on: ubuntu-latest
