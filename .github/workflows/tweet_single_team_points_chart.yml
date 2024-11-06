@@ -65,7 +65,7 @@ jobs:
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_points.yml@main
     with:
       team: "TOR"
-      minimum_icetime: 250
+      minimum_icetime: 50
 
   tweet-plot-schedule:
     runs-on: ubuntu-latest
