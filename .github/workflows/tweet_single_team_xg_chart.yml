@@ -1,8 +1,7 @@
 name: Tweet Single-Team Skater xG Ratios Plot
 on:
   schedule:
-    #- cron: 0 15 * * */2
-    - cron: 22 * * * * 
+    - cron: 0 15 * * */2
 
   workflow_dispatch:
     inputs:
