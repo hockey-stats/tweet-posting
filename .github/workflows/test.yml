@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: gh variable set TEST_VAR --body "Set from workflow"
+      - run: gh variable set TEST_VAR --body "TOR"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
