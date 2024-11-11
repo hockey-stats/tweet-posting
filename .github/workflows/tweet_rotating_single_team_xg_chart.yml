@@ -17,7 +17,7 @@ jobs:
         run: |
           import os
 
-          team_value = os.environ['TEAM_VALUE']
+          team_value = int(os.environ['TEAM_VALUE'])
 
           teams = ['ANA', 'BOS', 'BUF', 'CAR', 'CBJ', 'CGY', 'CHI', 'COL', 'DAL', 'DET', 
                    'EDM', 'FLA', 'LAK', 'MIN', 'MTL', 'NJD', 'NSH', 'NYI', 'NYR', 'OTT',
