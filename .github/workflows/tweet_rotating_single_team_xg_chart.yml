@@ -80,6 +80,11 @@ jobs:
        
       - name: Install Requirements
         run: pip install -r requirements.txt
+
+      - name: Check files
+        run: |
+          ls;
+          ls skater-plots
       
       - name: Send Tweet
         run: |
