@@ -1,8 +1,5 @@
 name: Tweet Single-Team Forward Scoring Rates
 on:
-  schedule:
-    - cron: 30 16 * * */2
-
   workflow_dispatch:
     inputs:
       team:
@@ -56,43 +53,3 @@ jobs:
         run: |
           ls; 
           python3 tweet_picture.py -i skater-point-plots/${TEAM}_F_5on5_scoring_rates.png -t "${TEAM} 5on5 scoring rates";
-
-  #################
-  ### Scheduled ###
-  #################
-  gather-plot-schedule:
-    if: github.event_name == 'schedule'
-    uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_points.yml@main
-    with:
-      team: "TOR"
-      minimum_icetime: 50
-
-  tweet-plot-schedule:
-    runs-on: ubuntu-latest
-    needs: gather-plot-schedule
-    env:
-      API_KEY: ${{ secrets.API_KEY }}
-      API_SECRET: ${{ secrets.API_KEY_SECRET }}
-      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Download Charts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ needs.gather-plot.outputs.plot_artifact_name }}
-      
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-          cache: 'pip'
-       
-      - name: Install Requirements
-        run: pip install -r requirements.txt
-      
-      - name: Send Tweet
-        run: |
-          python3 tweet_picture.py -i skater-point-plots/TOR_F_5on5_scoring_rates.png -t "Toronto 5v5 scoring rates #LeafsForever";
