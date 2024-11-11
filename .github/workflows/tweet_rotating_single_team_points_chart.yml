@@ -2,7 +2,6 @@ name: Tweet Rotating Forward Scoring Rates
 on:
   schedule:
     - cron: 30 15-23/2 * * *
-  push:
 
 jobs:
   determine-team:
