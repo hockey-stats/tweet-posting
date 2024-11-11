@@ -1,0 +1,11 @@
+name: Test setting repo variables
+on:
+  workflow_dispatch
+
+jobs:
+  update-variable:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh variable set TEST_VAR --body "Set from workflow"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
