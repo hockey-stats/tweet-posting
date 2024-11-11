@@ -1,7 +1,8 @@
-name: Tweet Rotating Skater xG Ratios Plot
+name: Tweet Rotating Forward Scoring Rates
 on:
   schedule:
-    - cron: 0 15-23/2 * * *
+    - cron: 30 15-23/2 * * *
+  push:
 
 jobs:
   determine-team:
@@ -15,7 +16,7 @@ jobs:
         id: choose_team
         shell: python
         env:
-          TEAM_VALUE: ${{ vars.TEAM_VALUE_XG }}
+          TEAM_VALUE: ${{ vars.TEAM_VALUE_POINTS }}
         run: |
           import os
 
@@ -38,11 +39,11 @@ jobs:
       - name: Update team value
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
-        run: gh variable set TEAM_VALUE_XG --body ${{ steps.choose_team.outputs.team_value }}
-                   
+        run: gh variable set TEAM_VALUE_POINTS --body ${{ steps.choose_team.outputs.team_value }}
+
   gather-plot:
     needs: determine-team
-    uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_tables.yml@main
+    uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_points.yml@main
     with:
       team: ${{ needs.determine-team.outputs.team }}
       minimum_icetime: 100
@@ -73,7 +74,7 @@ jobs:
        
       - name: Install Requirements
         run: pip install -r requirements.txt
-
+      
       - name: Send Tweet
         run: |
-          python3 tweet_picture.py -i ${TEAM}_skater_xg_ratios.png -t "${TEAM} 5v5 on-ice xG results";
+          python3 tweet_picture.py -i ${TEAM}_F_5on5_scoring_rates.png -t "${TEAM} 5v5 scoring rates";
