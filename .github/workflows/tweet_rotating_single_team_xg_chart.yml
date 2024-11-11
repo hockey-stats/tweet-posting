@@ -13,11 +13,11 @@ jobs:
         id: choose_team
         shell: python
         env:
-          TEAM_VALUE: ${{ vars.TEAM_VALUE }}
+          TEAM_VALUE: ${{ vars.TEAM_VALUE_XG }}
         run: |
           import os
 
-          team_value = os.environ['TEAM_VALUE_XG']
+          team_value = os.environ['TEAM_VALUE']
 
           teams = ['ANA', 'BOS', 'BUF', 'CAR', 'CBJ', 'CGY', 'CHI', 'COL', 'DAL', 'DET', 
                    'EDM', 'FLA', 'LAK', 'MIN', 'MTL', 'NJD', 'NSH', 'NYI', 'NYR', 'OTT',
