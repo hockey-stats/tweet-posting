@@ -84,7 +84,6 @@ jobs:
       - name: Check files
         run: |
           ls;
-          ls skater-plots
       
       - name: Send Tweet
         run: |
