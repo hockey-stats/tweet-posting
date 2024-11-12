@@ -1,4 +1,4 @@
-name: Tweet All Skaters xG Ratios Plot
+name: Tweet All Team 5on4 Offense Chart
 on:
   push:
   schedule:
