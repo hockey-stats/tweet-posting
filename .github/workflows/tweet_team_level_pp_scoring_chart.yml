@@ -41,5 +41,6 @@ jobs:
       #
       - name: Send Tweet
         run: |
+          ls -lrt;
           python3 tweet_picture.py -i 5on4_offence.png -t "5on4 Power Play offence for all teams. #NHL";
     ###
