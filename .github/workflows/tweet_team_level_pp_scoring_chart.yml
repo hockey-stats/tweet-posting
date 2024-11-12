@@ -1,13 +1,15 @@
-name: Tweet Team-Level xG Ratios Plot
+name: Tweet All Skaters xG Ratios Plot
 on:
   schedule:
-    - cron: 0 16 * * 3
+    - cron: 0 17 * * 4
 
   workflow_dispatch:
     
 jobs:
   gather-plot:
-    uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_team_tables.yml@main
+    uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_special_teams_tables.yml@main
+    with:
+      situation: '5on4'
 
   tweet-plot:
     runs-on: ubuntu-latest
@@ -38,6 +40,5 @@ jobs:
       #
       - name: Send Tweet
         run: |
-          ls -lrt; 
-          python3 tweet_picture.py -i team-plots/xg_ratios.png -t "5v5 on-ice xG results for all teams #NHL";
+          python3 tweet_picture.py -i 5on4_offence.png -t "5on4 Power Play offence for all teams. #NHL";
     ###
