@@ -1,6 +1,5 @@
 name: Tweet All Team 4on5 Defense Charts
 on:
-  push:
   schedule:
     - cron: 30 17 * * 4
 
