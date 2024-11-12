@@ -1,5 +1,6 @@
 name: Tweet All Skaters xG Ratios Plot
 on:
+  push:
   schedule:
     - cron: 0 17 * * 4
 
