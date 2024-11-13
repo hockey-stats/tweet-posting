@@ -1,7 +1,7 @@
 name: Tweet Team-Level xG Ratios Plot
 on:
   schedule:
-    - cron: 0 16 * * 3
+    - cron: 0 16 * * */3
 
   workflow_dispatch:
     
