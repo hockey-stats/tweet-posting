@@ -80,4 +80,4 @@ jobs:
       
       - name: Send Tweet
         run: |
-          python3 tweet_picture.py -i ${TEAM}_skater_xg_ratios.png -t "${{ steps.team_details.outputs.team_full_name }} 5v5 on-ice xG results ${{ steps.team_details.outputs.hashtag }}";
+          python3 tweet_picture.py -i ${TEAM}_F_5on5_scoring_rates.png -t "${{ steps.team_details.outputs.team_full_name }} 5v5 forward scoring rates ${{ steps.team_details.outputs.hashtag }}";
