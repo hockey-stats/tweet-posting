@@ -1,16 +1,7 @@
-name: Tweet Single-Team Skater xG Ratios Plot
-on:
-  workflow_dispatch:
-    inputs:
-      team:
-        type: string
-        default: "TOR"
-        description: "Team for which to generate plots"
 
-      icetime:
-        type: number
-        default: 50
-        description: "Minimum icetime to use for cutoff"
+name: Hashtag Test
+on:
+  push:
     
 jobs:
   ############
@@ -20,7 +11,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_tables.yml@main
     with:
-      team: ${{ inputs.team }}
+      team: 'TOR'
       minimum_icetime: 50
   
   tweet-plot-manual:
@@ -51,10 +42,10 @@ jobs:
 
       - name: Get Team Details
         id: team_details
-        run: python3 get_team_details.py ${{ inputs.team }}
+        run: python3 get_team_details.py 'TOR'
       
       - name: Send Tweet
         env:
-          TEAM: ${{ inputs.team }}
+          TEAM: 'TOR'
         run: |
           python3 tweet_picture.py -i skater-plots/${TEAM}_skater_xg_ratios.png -t "${{ steps.team_details.team_full_name }} 5v5 on-ice xG results ${{ steps.team_details.hashtag }}";
