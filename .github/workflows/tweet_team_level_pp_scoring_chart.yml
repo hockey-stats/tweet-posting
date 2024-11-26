@@ -1,7 +1,7 @@
 name: Tweet All Team 5on4 Offense Chart
 on:
   schedule:
-    - cron: 0 17 * * 4
+    - cron: 0 17 * * */4
 
   workflow_dispatch:
     

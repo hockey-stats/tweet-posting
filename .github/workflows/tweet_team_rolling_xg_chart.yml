@@ -1,7 +1,7 @@
 name: Tweet Team-Level xG Rolling Averages Multi-Plot
 on:
   schedule:
-    - cron: 0 17 * * 2
+    - cron: 0 17 * * */3
 
   workflow_dispatch:
     

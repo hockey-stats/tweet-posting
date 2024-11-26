@@ -1,7 +1,7 @@
 name: Tweet All Skaters xG Ratios Plot
 on:
   schedule:
-    - cron: 30 15 * * 4
+    - cron: 30 15 * * */4
 
   workflow_dispatch:
     
