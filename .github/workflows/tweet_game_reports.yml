@@ -30,7 +30,7 @@ jobs:
         run: python3 check_for_new_games.py -y 2024
 
       - name: End run if no new games found
-        if: steps.check.output.game_id == "NONE"
+        if: steps.check.output.game_id == 'NONE'
         run: |
           gh run cancel ${{ github.run_id }}
           gh run watch ${{ github.run_id }}
