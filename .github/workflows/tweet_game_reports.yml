@@ -1,0 +1,43 @@
+name: Tweet Game Report
+on:
+  workflow_dispatch:
+    
+  #schedule:
+  #  - cron: '*/15 2-6 * * *'
+
+jobs:
+  check_for_new_games:
+    runs-on: ubuntu-latest
+    container:
+      image: sohraub/hockey-stats-web-scraper:main
+      credentials:
+        username: ${{ vars.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    permissions:
+      actions: write
+
+    steps: 
+      - uses: actions/checkout@v4
+        with:
+          repository: 'hockey_stats/web-scraper'
+
+      - name: Check if any new games are available
+        id: check
+        run: python3 check_for_new_games.py -y 2024
+
+      - name: End run if no new games found
+        if: steps.check.output.game_id == "NONE"
+        run: |
+          gh run cancel ${{ github.run_id }}
+          gh run watch ${{ github.run_id }}
+
+      - name: Scrape game data
+        run: python3 scrape_game_data.py -y 2024 -g ${{ steps.check.output.game_id }}
+
+
+
+
