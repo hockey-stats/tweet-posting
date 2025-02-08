@@ -37,6 +37,7 @@ jobs:
       - name: Scrape game data
         run: |
           cd /home/scraping
+          echo ${{ steps.check.output.game_id }}
           python3 scrape_game_data.py -y 2024 -g ${{ steps.check.output.game_id }}
 
 
