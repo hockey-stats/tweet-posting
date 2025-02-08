@@ -29,7 +29,7 @@ jobs:
           python3 check_for_new_games.py -y 2024
 
       - name: End run if no new games found
-        if: steps.check.output.game_id == 'NONE'
+        if: steps.check.outputs.game_id == 'NONE'
         run: |
           gh run cancel ${{ github.run_id }}
           gh run watch ${{ github.run_id }}
@@ -37,8 +37,8 @@ jobs:
       - name: Scrape game data
         run: |
           cd /home/scraping
-          echo ${{ steps.check.output.game_id }}
-          python3 scrape_game_data.py -y 2024 -g ${{ steps.check.output.game_id }}
+          echo ${{ steps.check.outputs.game_id }}
+          python3 scrape_game_data.py -y 2024 -g ${{ steps.check.outputs.game_id }}
 
 
 
