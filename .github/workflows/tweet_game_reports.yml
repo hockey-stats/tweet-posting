@@ -23,9 +23,9 @@ jobs:
       
     steps: 
       - uses: actions/checkout@v4
-        with:
-          repository: hockey_stats/web-scraper
-          ref: main
+       # with:
+       #   repository: hockey_stats/web-scraper
+       #   ref: main
 
       - name: Check if any new games are available
         id: check
