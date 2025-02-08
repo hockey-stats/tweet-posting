@@ -22,12 +22,11 @@ jobs:
       contents: read
       
     steps: 
-      - name: Check where we are
-        run: ls
-
       - name: Check if any new games are available
         id: check
-        run: python3 check_for_new_games.py -y 2024
+        run: |
+          cd /home/scraping
+          python3 check_for_new_games.py -y 2024
 
       - name: End run if no new games found
         if: steps.check.output.game_id == 'NONE'
@@ -36,7 +35,10 @@ jobs:
           gh run watch ${{ github.run_id }}
 
       - name: Scrape game data
-        run: python3 scrape_game_data.py -y 2024 -g ${{ steps.check.output.game_id }}
+        run: |
+          cd /home/scraping
+          python3 scrape_game_data.py -y 2024 -g ${{ steps.check.output.game_id }}
+
 
 
 
