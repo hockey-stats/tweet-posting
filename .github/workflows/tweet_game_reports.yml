@@ -22,11 +22,8 @@ jobs:
       contents: read
       
     steps: 
-      - uses: actions/checkout@v4
-        with:
-          repository: hockey_stats/web-scraper
-          ref: main
-          token: ${{ secrets.GH_TOKEN_CLONE }}
+      - name: Check where we are
+        run: ls
 
       - name: Check if any new games are available
         id: check
