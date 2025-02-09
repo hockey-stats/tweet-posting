@@ -37,10 +37,13 @@ jobs:
       - name: Scrape game data
         run: |
           cd /home/scraping
-          echo ${{ steps.check.outputs.game_id }}
+          find 
+
           python3 scrape_game_data.py -y 2024 -g ${{ steps.check.outputs.game_id }}
 
-
+      - name: Check for files
+        if: always()
+        run: find / -name '*csv'
 
 
 
