@@ -10,7 +10,9 @@ from get_team_details import team_dict
 
 if __name__ == '__main__':
     filename = sys.argv[1]
+    print(f"filename: {filename}")
     basename = os.path.basename(filename).split('.')[0]
+    print(f"basename: {basename}")
 
     team_a, team_b, date = basename.split('_')
 
