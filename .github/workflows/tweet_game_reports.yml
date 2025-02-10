@@ -69,7 +69,7 @@ jobs:
 
       - name: Send Tweet
         run: |
-          python3 tweet_picture.py -i ${{ steps.team_details.outputs.image_filename }} -t "${{ steps.team_details.outputs.tweet_body }}""
+          python3 tweet_picture.py -i ${{ steps.game_details.outputs.image_filename }} -t "${{ steps.game_details.outputs.tweet_body }}""
 
       - name: Update last game ID org variable
         env:
