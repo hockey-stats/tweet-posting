@@ -7,6 +7,10 @@ on:
 
 jobs:
   gather-plot:
+    permissions:
+      actions: write
+      contents: read
+
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_game_reports.yml@main
 
   tweet-plot:
