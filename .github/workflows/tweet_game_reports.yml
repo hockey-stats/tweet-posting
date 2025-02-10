@@ -64,7 +64,9 @@ jobs:
         env:
           PYTHONPATH: ${ github.workspace }
         run: |
-          FILENAME=$(ls *png)
+          ls -lrt;
+          find ./;
+          FILENAME=$(ls *png);
           python3 get_game_details.py $FILENAME
 
       - name: Send Tweet
