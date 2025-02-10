@@ -2,48 +2,49 @@ name: Tweet Game Report
 on:
   workflow_dispatch:
     
-  #schedule:
-  #  - cron: '*/15 2-6 * * *'
+  schedule:
+    - cron: '*/15 2-6 * * *'
 
 jobs:
-  check_for_new_games:
+  gather-plot:
+    uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_game_reports.yml
+
+  tweet-plot:
     runs-on: ubuntu-latest
-    container:
-      image: sohraub/hockey-stats-web-scraper:main
-      credentials:
-        username: ${{ vars.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+    needs: gather-plot
 
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      API_KEY: ${{ secrets.API_KEY }}
+      API_SECRET: ${{ secrets.API_KEY_SECRET }}
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
 
-    permissions:
-      actions: write
-      contents: read
-      
-    steps: 
-      - name: Check if any new games are available
-        id: check
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Download charts
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.gather-plot.outputs.plot_artifact_name }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install Requirements
+        run: pip install -r requirements.txt
+
+      - name: Get Game Details
+        id: game_details
+        env:
+          PYTHONPATH: ${ github.workspace }
         run: |
-          cd /home/scraping
-          python3 check_for_new_games.py -y 2024
+          FILENAME=$(ls *png)
+          python3 get_game_details.py $FILENAME
 
-      - name: End run if no new games found
-        if: steps.check.outputs.game_id == 'NONE'
+      - name: Send Tweet
         run: |
-          gh run cancel ${{ github.run_id }}
-          gh run watch ${{ github.run_id }}
-
-      - name: Scrape game data
-        run: |
-          cd /home/scraping
-          find 
-
-          python3 scrape_game_data.py -y 2024 -g ${{ steps.check.outputs.game_id }}
-
-      - name: Check for files
-        if: always()
-        run: find / -name '*csv'
-
-
-
+          python3 tweet_picture.py -i ${{ steps.team_details.outputs.image_filename }} -t "${{ steps.team_details.outputs.tweet_body }}""
