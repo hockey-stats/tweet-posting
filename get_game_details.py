@@ -22,8 +22,7 @@ if __name__ == '__main__':
     full_team_a = team_dict[team_a]['full_name']
     full_team_b = team_dict[team_b]['full_name']
 
-    tweet_body = f"Game Report - {full_team_a} vs {full_team_b} - {date}\n"\
-                 f"{hashtag_a} {hashtag_b}"
+    tweet_body = f"Game Report - {full_team_a} vs {full_team_b} - {date} {hashtag_a} {hashtag_b}"
 
     with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as fh:
         print(f'tweet_body={tweet_body}\n', file=fh)
