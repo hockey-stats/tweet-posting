@@ -26,4 +26,4 @@ if __name__ == '__main__':
 
     with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as fh:
         print(f'tweet_body={tweet_body}\n', file=fh)
-        print(f'image_filename=${filename}\n', file=fh)
+        print(f'image_filename={filename}\n', file=fh)
