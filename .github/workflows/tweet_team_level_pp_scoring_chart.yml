@@ -19,6 +19,8 @@ jobs:
       API_SECRET: ${{ secrets.API_KEY_SECRET }}
       ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+      BSKY_LOGIN: ${{ secrets.BSKY_LOGIN }}
+      BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
     ###
     steps:
       - name: Checkout
