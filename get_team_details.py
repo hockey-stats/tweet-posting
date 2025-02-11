@@ -38,6 +38,10 @@ team_dict = {
     	'full_name': 'Los Angeles Kings',
 			'hashtag': '#GoKingsGo'
     },
+    'NJ': {
+    	'full_name': 'New Jersey Devils',
+			'hashtag': '#NJDevils'
+    },
     'NJD': {
     	'full_name': 'New Jersey Devils',
 			'hashtag': '#NJDevils'
