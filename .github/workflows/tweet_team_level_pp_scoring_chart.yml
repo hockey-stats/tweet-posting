@@ -40,6 +40,9 @@ jobs:
       #
       - name: Send Tweet
         run: |
-          ls -lrt;
           python3 tweet_picture.py -i special-teams-plots/5on4_offence.png -t "5on4 Power Play offence for all teams. #NHL";
+      #
+      - name: Send Skeet
+        run: |
+          python3 skeet_picture.py -i special-teams-plots/5on4_offence.png -t "5on4 Power Play offence for all teams. #NHL";
     ###

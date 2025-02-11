@@ -71,6 +71,10 @@ jobs:
         run: |
           python3 tweet_picture.py -i ${{ steps.game_details.outputs.image_filename }} -t "${{ steps.game_details.outputs.tweet_body }}"
 
+      - name: Send Skeet
+        run: |
+          python3 skeet_picture.py -i ${{ steps.game_details.outputs.image_filename }} -t "${{ steps.game_details.outputs.tweet_body }}"
+
       - name: Update last game ID org variable
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
