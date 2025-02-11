@@ -40,6 +40,9 @@ jobs:
       #
       - name: Send Tweet
         run: |
-          ls -lrt; 
           python3 tweet_picture.py -i team-rolling-avg-plots/xg_rolling_avg_by_division.png -t "5v5 xG% 10-game rolling average for every team, by division #NHL";
+      #
+      - name: Send Skeet
+        run: |
+          python3 skeet_picture.py -i team-rolling-avg-plots/xg_rolling_avg_by_division.png -t "5v5 xG% 10-game rolling average for every team, by division #NHL";
     ###
