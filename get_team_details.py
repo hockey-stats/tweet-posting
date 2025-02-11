@@ -30,6 +30,10 @@ team_dict = {
     	'full_name': 'Florida Panthers',
 			'hashtag': '#TimeToHunt'
     },
+    'LA': {
+    	'full_name': 'Los Angeles Kings',
+			'hashtag': '#GoKingsGo'
+    },
     'LAK': {
     	'full_name': 'Los Angeles Kings',
 			'hashtag': '#GoKingsGo'
