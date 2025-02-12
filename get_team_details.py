@@ -106,6 +106,10 @@ team_dict = {
     	'full_name': 'Toronto Maple Leafs',
 		'hashtag': '#LeafsForever'
     },
+    'SJ': {
+    	'full_name': 'San Jose Sharks',
+		'hashtag': '#TheFutureIsTeal'
+    },
     'SJS': {
     	'full_name': 'San Jose Sharks',
 		'hashtag': '#TheFutureIsTeal'
