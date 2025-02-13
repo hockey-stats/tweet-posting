@@ -10,7 +10,7 @@ jobs:
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_tables.yml@main
     with:
       team: 'ALL'
-      minimum_icetime: 400
+      minimum_icetime: 1000
 
   tweet-plot:
     runs-on: ubuntu-latest
