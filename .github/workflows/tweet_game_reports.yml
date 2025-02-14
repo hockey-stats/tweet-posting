@@ -49,9 +49,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check output
-        run: echo ${{ needs.gather-plot.outputs.game_id }}
-        
       - name: Download charts
         uses: actions/download-artifact@v4
         with:
