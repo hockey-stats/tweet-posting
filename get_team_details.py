@@ -8,151 +8,151 @@ import os
 team_dict = {
     'MIN': {
     	'full_name': 'Minnesota Wild',
-		'hashtag': '#mnwild'
+		  'hashtag': '#mnwild'
     },
     'VGK': {
     	'full_name': 'Vegas Golden Knights',
-		'hashtag': '#VegasBorn'
+		  'hashtag': '#VegasBorn'
     },
     'OTT': {
     	'full_name': 'Ottawa Senators',
-		'hashtag': '#GoSensGo'
+		  'hashtag': '#GoSensGo'
     },
     'CAR': {
     	'full_name': 'Carolina Hurricanes',
-		'hashtag': '#RaiseUp'
+		  'hashtag': '#RaiseUp'
     },
     'CBJ': {
     	'full_name': 'Columbus Blue Jackets',
-		'hashtag': '#CBJ'
+		  'hashtag': '#CBJ'
     },
     'FLA': {
     	'full_name': 'Florida Panthers',
-		'hashtag': '#TimeToHunt'
+		  'hashtag': '#TimeToHunt'
     },
     'LA': {
     	'full_name': 'Los Angeles Kings',
-		'hashtag': '#GoKingsGo'
+		  'hashtag': '#GoKingsGo'
     },
     'LAK': {
     	'full_name': 'Los Angeles Kings',
-		'hashtag': '#GoKingsGo'
+		  'hashtag': '#GoKingsGo'
     },
     'NJ': {
     	'full_name': 'New Jersey Devils',
-		'hashtag': '#NJDevils'
+		  'hashtag': '#NJDevils'
     },
     'NJD': {
     	'full_name': 'New Jersey Devils',
-		'hashtag': '#NJDevils'
+		  'hashtag': '#NJDevils'
     },
     'MTL': {
     	'full_name': 'Montreal Canadiens',
-		'hashtag': '#GoHabsGo'
+		  'hashtag': '#GoHabsGo'
     },
     'COL': {
     	'full_name': 'Colorado Avalanche',
-		'hashtag': '#GoAvsGo'
+		  'hashtag': '#GoAvsGo'
     },
     'WSH': {
     	'full_name': 'Washington Capitals',
-		'hashtag': '#ALLCAPS'
+		  'hashtag': '#ALLCAPS'
     },
     'DET': {
     	'full_name': 'Detroit Red Wings',
-		'hashtag': '#LGRW'
+		  'hashtag': '#LGRW'
     },
     'TBL': {
     	'full_name': 'Tampa Bay Lightning',
-		'hashtag': '#GoBolts'
+		  'hashtag': '#GoBolts'
     },
     'TB': {
     	'full_name': 'Tampa Bay Lightning',
-		'hashtag': '#GoBolts'
+		  'hashtag': '#GoBolts'
     },
     'VAN': {
     	'full_name': 'Vancouver Canucks',
-		'hashtag': '#Canucks'
+		  'hashtag': '#Canucks'
     },
     'DAL': {
     	'full_name': 'Dallas Stars',
-		'hashtag': '#TexasHockey'
+		  'hashtag': '#TexasHockey'
     },
     'NYR': {
     	'full_name': 'New York Rangers',
-		'hashtag': '#NYR'
+		  'hashtag': '#NYR'
     },
     'BUF': {
     	'full_name': 'Buffalo Sabres',
-		'hashtag': '#SabreHood'
+		  'hashtag': '#SabreHood'
     },
     'PHI': {
     	'full_name': 'Philadelphia Flyers',
-		'hashtag': '#LetsGoFlyers'
+		  'hashtag': '#LetsGoFlyers'
     },
     'EDM': {
     	'full_name': 'Edmonton Oilers',
-		'hashtag': '#LetsGoOilers'
+		  'hashtag': '#LetsGoOilers'
     },
     'STL': {
     	'full_name': 'St Louis Blues',
-		'hashtag': '#stlblues'
+		  'hashtag': '#stlblues'
     },
     'SEA': {
     	'full_name': 'Seattle Kraken',
-		'hashtag': '#SeaKraken'
+		  'hashtag': '#SeaKraken'
     },
     'TOR': {
     	'full_name': 'Toronto Maple Leafs',
-		'hashtag': '#LeafsForever'
+		  'hashtag': '#LeafsForever'
     },
     'SJ': {
     	'full_name': 'San Jose Sharks',
-		'hashtag': '#TheFutureIsTeal'
+		  'hashtag': '#TheFutureIsTeal'
     },
     'SJS': {
     	'full_name': 'San Jose Sharks',
-		'hashtag': '#TheFutureIsTeal'
+		  'hashtag': '#TheFutureIsTeal'
     },
     'PIT': {
     	'full_name': 'Pittsburgh Penguins',
-		'hashtag': '#LetsGoPens'
+		  'hashtag': '#LetsGoPens'
     },
     'WPG': {
     	'full_name': 'Winnipeg Jets',
-		'hashtag': '#GoJetsGo'
+		  'hashtag': '#GoJetsGo'
     },
     'CGY': {
     	'full_name': 'Calgary Flames',
-		'hashtag': '#Flames'
+		  'hashtag': '#Flames'
     },
     'BOS': {
     	'full_name': 'Boston Bruins',
-		'hashtag': '#NHLBruins'
+		  'hashtag': '#NHLBruins'
     },
     'NSH': {
     	'full_name': 'Nashville Predators',
-		'hashtag': '#Smashville'
+		  'hashtag': '#Smashville'
     },
     'ANA': {
     	'full_name': 'Anaheim Ducks',
-		'hashtag': '#FlyTogether'
+		  'hashtag': '#FlyTogether'
     },
     'CHI': {
     	'full_name': 'Chicago Blackhawks',
-		'hashtag': '#Blackhawks'
+		  'hashtag': '#Blackhawks'
     },
     'ARI': {
     	'full_name': 'Arizona Coyotes',
-		'hashtag': '#LolArizona'
+		  'hashtag': '#LolArizona'
     },
     'NYI': {
     	'full_name': 'New York Islanders',
-		'hashtag': '#Isles'
+		  'hashtag': '#Isles'
     },
     'UTA': {
         'full_name': 'Utah Hockey Club',
-        'hashtag': '#UtahHC'
+          'hashtag': '#UtahHC'
     }
 }
 
