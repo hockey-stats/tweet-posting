@@ -48,7 +48,7 @@ jobs:
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_points.yml@main
     with:
       team: ${{ needs.determine-team.outputs.team }}
-      minimum_icetime: 250
+      minimum_icetime: 500
 
   tweet-plot:
     runs-on: ubuntu-latest
