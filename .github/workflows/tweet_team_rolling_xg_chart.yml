@@ -40,11 +40,11 @@ jobs:
       - name: Install Requirements
         run: pip install -r requirements.txt
       #
-      - name: Send Tweet
-        run: |
-          python3 tweet_picture.py -i team-rolling-avg-plots/xg_rolling_avg_by_division.png -t "5v5 xG% 10-game rolling average for every team, by division #NHL";
-      #
       - name: Send Skeet
         run: |
           python3 skeet_picture.py -i team-rolling-avg-plots/xg_rolling_avg_by_division.png -t "5v5 xG% 10-game rolling average for every team, by division #NHL" -a '14,14';
+      #
+      - name: Send Tweet
+        run: |
+          python3 tweet_picture.py -i team-rolling-avg-plots/xg_rolling_avg_by_division.png -t "5v5 xG% 10-game rolling average for every team, by division #NHL";
     ###

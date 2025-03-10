@@ -41,11 +41,11 @@ jobs:
       - name: Install Requirements
         run: pip install -r requirements.txt
       #
-      - name: Send Tweet
-        run: |
-          python3 tweet_picture.py -i ALL_F_5on5_scoring_rates.png -t "5v5 scoring rates for all skaters #NHL";
-      #
       - name: Send Skeet
         run: |
           python3 skeet_picture.py -i ALL_F_5on5_scoring_rates.png -t "5v5 scoring rates for all forwards #NHL";
+      #
+      - name: Send Tweet
+        run: |
+          python3 tweet_picture.py -i ALL_F_5on5_scoring_rates.png -t "5v5 scoring rates for all skaters #NHL";
     ###

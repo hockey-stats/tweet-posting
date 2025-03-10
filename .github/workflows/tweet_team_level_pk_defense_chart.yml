@@ -40,11 +40,12 @@ jobs:
       - name: Install Requirements
         run: pip install -r requirements.txt
       #
+      - name: Send Skeet
+        run: |
+          python3 skeet_picture.py -i special-teams-plots/4on5_defence.png -t "4on5 Penalty Kill defense for all teams. #NHL" -a '14,6';
+      #
       - name: Send Tweet
         run: |
           python3 tweet_picture.py -i special-teams-plots/4on5_defence.png -t "4on5 Penalty Kill defense for all teams. #NHL";
       #
-      - name: Send Skeet
-        run: |
-          python3 skeet_picture.py -i special-teams-plots/4on5_defence.png -t "4on5 Penalty Kill defense for all teams. #NHL" -a '14,6';
     ###

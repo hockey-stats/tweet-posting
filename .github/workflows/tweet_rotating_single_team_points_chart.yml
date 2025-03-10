@@ -83,10 +83,11 @@ jobs:
         id: team_details
         run: python3 get_team_details.py $TEAM
       
+      - name: Send Skeet
+        run: |
+          python3 skeet_picture.py -i ${TEAM}_F_5on5_scoring_rates.png -t "${{ steps.team_details.outputs.team_full_name }} 5v5 forward scoring rates ${{ steps.team_details.outputs.hashtag }} #NHL";
+
       - name: Send Tweet
         run: |
           python3 tweet_picture.py -i ${TEAM}_F_5on5_scoring_rates.png -t "${{ steps.team_details.outputs.team_full_name }} 5v5 forward scoring rates ${{ steps.team_details.outputs.hashtag }} #NHL";
 
-      - name: Send Skeet
-        run: |
-          python3 skeet_picture.py -i ${TEAM}_F_5on5_scoring_rates.png -t "${{ steps.team_details.outputs.team_full_name }} 5v5 forward scoring rates ${{ steps.team_details.outputs.hashtag }} #NHL";
