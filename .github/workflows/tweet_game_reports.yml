@@ -73,7 +73,7 @@ jobs:
 
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i ${{ steps.game_details.outputs.image_filename }} -t "${{ steps.game_details.outputs.tweet_body }}" -a '20,14'
+          python3 skeet_picture.py -i ${{ steps.game_details.outputs.image_filename }} -t "${{ steps.game_details.outputs.tweet_body }}" -a '25,16'
 
       - name: Send Tweet
         run: |
