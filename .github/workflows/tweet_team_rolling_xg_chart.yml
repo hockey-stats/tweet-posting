@@ -42,7 +42,7 @@ jobs:
       #
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i team-rolling-avg-plots/xg_rolling_avg_by_division.png -t "5v5 xG% 10-game rolling average for every team, by division #NHL" -a '14,14';
+          python3 skeet_picture.py -i team-rolling-avg-plots/xg_rolling_avg_by_division.png -t "5v5 xG% 10-game rolling average for every team, by division #NHL" -a '16,14';
       #
       - name: Send Tweet
         run: |
