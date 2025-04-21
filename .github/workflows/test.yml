@@ -1,4 +1,4 @@
-name: Tweet Rotating Forward Scoring Rates
+name: Testing
 on:
   workflow_dispatch:
   push:
