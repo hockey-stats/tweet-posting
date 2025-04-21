@@ -83,4 +83,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
           GAME_ID: ${{ needs.gather-plot.outputs.game_id }}
-        run: gh variable set LAST_GAME_REPORT_ID --body $GAME_ID
+          PREV_ID: ${{ vars.LAST_GAME_REPORT_ID }}
+        run: |
+          gh variable set LAST_GAME_REPORT_ID --body "${PREV_ID},${GAME_ID}"
