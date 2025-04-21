@@ -19,7 +19,7 @@ jobs:
         run: |
           import os
 
-          test = int(os.environ['TEST'])
+          test = int(os.environ['TEST_VALUES'])
 
           print(test)
 
