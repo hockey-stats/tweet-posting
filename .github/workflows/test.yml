@@ -19,7 +19,7 @@ jobs:
         run: |
           import os
 
-          test = int(os.environ['TEAM_VALUE'])
+          test = int(os.environ['TEST'])
 
           print(test)
 
