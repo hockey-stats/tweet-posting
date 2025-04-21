@@ -23,11 +23,11 @@ jobs:
 
           print(test)
 
-          test = test.split('\r\n')
+          test = test.split(',')
 
           test.append('10000')
           
-          test = '\r\n'.join(test)
+          test = ','.join(test)
 
           print(test)
 
