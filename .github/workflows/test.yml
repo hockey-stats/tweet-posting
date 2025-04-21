@@ -28,7 +28,7 @@ jobs:
           test.append('10000')
 
           with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-              print(f'test={test.join('\r\n')}\n', file=fh)
+              print(f'test={'\r\n'.join(test)}\n', file=fh)
 
       - uses: actions/checkout@v3
       - name: Update team value
