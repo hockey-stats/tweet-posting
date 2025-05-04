@@ -88,9 +88,9 @@ jobs:
       
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i ${TEAM}_wrc.png -t "${{ steps.team_details.outputs.team_full_name }} 5v5 on-ice xG results ${{ steps.team_details.outputs.hashtag }} #MLB";
+          python3 skeet_picture.py -i ${TEAM}_wrc.png -t "${{ steps.team_details.outputs.team_full_name }} hitters by wRC+ ${{ steps.team_details.outputs.hashtag }} #MLB";
 
    #   - name: Send Tweet
    #     run: |
-   #       python3 tweet_picture.py -i ${TEAM}_skater_g_ratios.png -t "${{ steps.team_details.outputs.team_full_name }} 5v5 on-ice xG results ${{ steps.team_details.outputs.hashtag }} #NHL";
+   #       python3 tweet_picture.py -i ${TEAM}_skater_g_ratios.png -t "${{ steps.team_details.outputs.team_full_name }} hitters by wRC+`` ${{ steps.team_details.outputs.hashtag }} #NHL";
 
