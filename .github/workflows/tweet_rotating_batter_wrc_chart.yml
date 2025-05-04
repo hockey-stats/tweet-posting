@@ -1,4 +1,4 @@
-name: Tweet Rotating Skater xG Ratios Plot
+name: Tweet Rotating Batter wRC+ Swarm Plot
 on:
   schedule:
     - cron: 0 15-23 * * *
