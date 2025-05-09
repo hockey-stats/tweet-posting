@@ -40,9 +40,9 @@ jobs:
       #
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i team-plots/xg_ratios.png -t "5v5 on-ice xG results for all teams #NHL";
+          python3 skeet_picture.py -i team-plots/playoff_xg_and_g.png -t "5v5 on-ice expected and actual goal results for all playoff teams #NHL";
       #
       - name: Send Tweet
         run: |
-          python3 tweet_picture.py -i team-plots/xg_ratios.png -t "5v5 on-ice xG results for all teams #NHL";
+          python3 tweet_picture.py -i team-plots/playoff_xg_and_g.png -t "5v5 on-ice expected and actual goal results for all playoff teams #NHL";
     ###
