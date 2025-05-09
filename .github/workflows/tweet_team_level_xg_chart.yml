@@ -40,6 +40,8 @@ jobs:
       #
       - name: Send Skeet
         run: |
+          ls -lrt;
+          ls -lrt team-plots/;
           python3 skeet_picture.py -i team-plots/playoff_xg_and_g.png -t "5v5 on-ice expected and actual goal results for all playoff teams #NHL";
       #
       - name: Send Tweet
