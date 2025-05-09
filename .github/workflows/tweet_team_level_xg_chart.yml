@@ -7,7 +7,7 @@ on:
     
 jobs:
   gather-plot:
-    uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_playoff_x_xg.yml@main
+    uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_playoff_g_xg.yml@main
 
   tweet-plot:
     runs-on: ubuntu-latest
