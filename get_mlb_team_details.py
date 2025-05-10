@@ -31,7 +31,7 @@ team_dict = {
 	"SDP": "San Diego Padres",
 	"SEA": "Seattle Mariners",
 	"SFG": "San Francisco Giants",
-	"STL": "St. Louis Blues",
+	"STL": "St. Louis Cardinals",
 	"TBR": "Tamba Bay Rays",
 	"TEX": "Texas Rangers",
 	"TOR": "Toronto Blue Jays",
