@@ -1,7 +1,7 @@
 name: Tweet Rotating Run Differential Rolling Average Plot
 on:
   schedule:
-    - cron: 0 15-23 * * *
+    - cron: 0 18 */2 * *
 
   workflow_dispatch:
     
@@ -53,7 +53,7 @@ jobs:
     needs: determine-div
     uses: hockey-stats/chart-plotting/.github/workflows/plot_rolling_run_diff.yml@main
     with:
-      division: ${{ needs.determine-team.outputs.team }}
+      division: ${{ needs.determine-div.outputs.division }}
 
   tweet-plot:
     runs-on: ubuntu-latest
