@@ -25,7 +25,7 @@ jobs:
 
           div_value = int(os.environ['MLB_DIV_VALUE'])
 
-          if div_value > 5:
+          if div_value >= 5:
             div_value = 0
 
           div_value += 1
