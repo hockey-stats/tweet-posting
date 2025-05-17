@@ -12,7 +12,7 @@ jobs:
 
     outputs:
       division: ${{ steps.choose_div.outputs.division }}
-      div_name: ${{ steps.choose_div.outputs.div_name }}
+      div_value: ${{ steps.choose_div.outputs.div_value }}
 
     steps:
       - name: Choose team from variable
@@ -40,14 +40,14 @@ jobs:
           }
 
           with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-              print(f'division={div_value}', file=fh)
-              print(f'div_name={divisions[div_value]}', file=fh)
+              print(f'div_value={div_value}', file=fh)
+              print(f'division={divisions[div_value]}', file=fh)
 
       - uses: actions/checkout@v3
       - name: Update division value
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
-        run: gh variable set MLB_DIV_VALUE --body ${{ steps.choose_div.outputs.division }}
+        run: gh variable set MLB_DIV_VALUE --body ${{ steps.choose_div.outputs.div_value }}
                    
   gather-plot:
     needs: determine-div
@@ -90,7 +90,7 @@ jobs:
       
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i run_diff_rolling_avg.png -t "Run differential 10-game rolling average for ${{ needs.determine-div.outputs.div_name }} teams #MLB";
+          python3 skeet_picture.py -i run_diff_rolling_avg.png -t "Run differential 10-game rolling average for ${{ needs.determine-div.outputs.division }} teams #MLB";
 
    #   - name: Send Tweet
    #     run: |
