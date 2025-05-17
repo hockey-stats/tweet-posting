@@ -1,4 +1,4 @@
-name: Tweet Rotating Batter wRC+ Swarm Plot
+name: Tweet Rotating Run Differential Rolling Average Plot
 on:
   schedule:
     - cron: 0 15-23 * * *
