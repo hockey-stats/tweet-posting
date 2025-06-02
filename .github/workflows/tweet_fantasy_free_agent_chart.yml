@@ -9,6 +9,7 @@ on:
 jobs:
   gather-plot:
     uses: hockey-stats/chart-plotting/.github/workflows/plot_fantasy_free_agents.yml@main
+    secrets: inherit
 
   tweet-plot:
     runs-on: ubuntu-latest
