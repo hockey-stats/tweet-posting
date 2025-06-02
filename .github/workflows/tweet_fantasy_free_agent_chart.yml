@@ -1,4 +1,4 @@
-name: Tweet Rotating Batter wRC+ Swarm Plot
+name: Tweet Fantasy Free Agents
 on:
   schedule:
     - cron: 0 16 * * *
