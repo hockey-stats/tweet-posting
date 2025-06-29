@@ -54,6 +54,9 @@ jobs:
     uses: hockey-stats/chart-plotting/.github/workflows/plot_rolling_run_diff.yml@main
     with:
       division: ${{ needs.determine-div.outputs.division }}
+    permissions:
+      actions: write
+      contents: read
 
   tweet-plot:
     runs-on: ubuntu-latest
