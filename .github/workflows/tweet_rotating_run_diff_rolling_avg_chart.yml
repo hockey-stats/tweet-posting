@@ -76,15 +76,30 @@ jobs:
       - name: Install Requirements
         run: pip install -r requirements.txt
 
-      - name: Get Team Details
-        id: team_details
-        run: python3 get_mlb_team_details.py $TEAM
-      
+      - name: Get division name
+        id: div_name
+        shell: python
+        env:
+          MLB_DIV_VALUE: ${{ vars.MLB_DIV_VALUE }}
+        run: |
+          import os
+
+          div_value = int(os.environ['MLB_DIV_VALUE'])
+
+          divisions = {
+            0: 'American League East',
+            1: 'American League West',
+            2: 'American League Central',
+            3: 'National League East',
+            4: 'National League West',
+            5: 'National League Central',
+          }
+
+          div_name = divisions[div_value]
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+              print(f'div_name={div_name}', file=fh)
+
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i run_diff_rolling_avg.png -t "Run differential 10-game rolling average for ${{ needs.determine-div.outputs.division }} teams #MLB";
-
-   #   - name: Send Tweet
-   #     run: |
-   #       python3 tweet_picture.py -i ${TEAM}_skater_g_ratios.png -t "${{ steps.team_details.outputs.team_full_name }} hitters by wRC+`` ${{ steps.team_details.outputs.hashtag }} #NHL";
-
+          python3 skeet_picture.py -i run_diff_rolling_avg.png -t "Run differential 10-game rolling average for ${{ steps.div_name.outputs.div_name }} teams #MLB";
