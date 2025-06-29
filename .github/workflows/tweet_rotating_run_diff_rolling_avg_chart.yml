@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      division: ${{ steps.choose_div.outputs.division }}
       div_value: ${{ steps.choose_div.outputs.div_value }}
 
     steps:
@@ -30,18 +29,8 @@ jobs:
 
           div_value += 1
 
-          divisions = {
-            0: 'American League East',
-            1: 'American League West',
-            2: 'American League Central',
-            3: 'National League East',
-            4: 'National League West',
-            5: 'National League Central',
-          }
-
           with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
               print(f'div_value={div_value}', file=fh)
-              print(f'division={divisions[div_value]}', file=fh)
 
       - uses: actions/checkout@v3
       - name: Update division value
@@ -53,7 +42,7 @@ jobs:
     needs: determine-div
     uses: hockey-stats/chart-plotting/.github/workflows/plot_rolling_run_diff.yml@main
     with:
-      division: ${{ needs.determine-div.outputs.division }}
+      division: ${{ needs.determine-div.outputs.div-value }}
     permissions:
       actions: write
       contents: read
