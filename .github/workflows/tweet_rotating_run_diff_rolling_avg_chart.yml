@@ -42,7 +42,7 @@ jobs:
     needs: determine-div
     uses: hockey-stats/chart-plotting/.github/workflows/plot_rolling_run_diff.yml@main
     with:
-      division: ${{ needs.determine-div.outputs.div-value }}
+      division: ${{ needs.determine-div.outputs.div_value }}
     permissions:
       actions: write
       contents: read
