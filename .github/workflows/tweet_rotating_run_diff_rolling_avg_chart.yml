@@ -102,4 +102,4 @@ jobs:
 
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i run_diff_rolling_avg.png -t "Run differential 10-game rolling average for ${{ steps.div_name.outputs.div_name }} teams #MLB";
+          python3 skeet_picture.py -i run_diff_rolling_avg.png -t "Run Differential Rolling Averages for ${{ steps.div_name.outputs.div_name }} Teams #MLB";
