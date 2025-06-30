@@ -95,11 +95,22 @@ jobs:
             5: 'National League Central',
           }
 
+          hashtags = {
+            0: ['#BlueJays', '#RedSox', '#Yankees', '#Rays', '#Orioles'],
+            1: ['#Mariners', '#Astros', '#Angels', '#Rangers', '#Athletics'],
+            2: ['#Guardians', '#Tigers', '#Royals', '#Twins', '#WhiteSox'],
+            3: ['#Marlins', '#Nationals', '#Braves', '#Mets', '#Phillies'],
+            4: ['#Padres', '#Rockies', '#Giants', '#Dodgers', '#Diamondbacks'],
+            5: ['#Cardinals', '#Brewers', '#Cubs', '#Reds', '#Pirates']
+          }
+
           div_name = divisions[div_value]
+          hashtag = hashtags[div_value]
 
           with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
               print(f'div_name={div_name}', file=fh)
+              print(f'hashtag={hashtag}', file=fh)
 
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i run_diff_rolling_avg.png -t "Run Differential Rolling Averages for ${{ steps.div_name.outputs.div_name }} Teams #MLB";
+          python3 skeet_picture.py -i run_diff_rolling_avg.png -t "Run Differential Rolling Averages for ${{ steps.div_name.outputs.div_name }} Teams #MLB ${{ steps.div_name.outputs.hashtag }}";
