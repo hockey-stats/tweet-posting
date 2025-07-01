@@ -24,10 +24,10 @@ jobs:
 
           div_value = int(os.environ['MLB_DIV_VALUE_B'])
 
-          if div_value >= 5:
-            div_value = 0
-
           div_value += 1
+
+          if div_value > 5:
+            div_value = 0
 
           with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
               print(f'div_value={div_value}', file=fh)
@@ -80,11 +80,11 @@ jobs:
         id: div_name
         shell: python
         env:
-          MLB_DIV_VALUE_B: ${{ vars.MLB_DIV_VALUE_B }}
+          DIVISION: ${{ needs.determine-div.outputs.div_value }}
         run: |
           import os
 
-          div_value = int(os.environ['MLB_DIV_VALUE_B'])
+          div_value = int(os.environ['DIVISION'])
 
           divisions = {
             0: 'American League East',
