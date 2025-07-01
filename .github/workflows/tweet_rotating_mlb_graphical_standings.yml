@@ -1,0 +1,116 @@
+name: Tweet Rotating MLB Divisional Standings
+on:
+  schedule:
+    - cron: 0 20 */2 * *
+
+  workflow_dispatch:
+    
+
+jobs:
+  determine-div:
+    runs-on: ubuntu-latest
+
+    outputs:
+      div_value: ${{ steps.choose_div.outputs.div_value }}
+
+    steps:
+      - name: Choose team from variable
+        id: choose_div
+        shell: python
+        env:
+          MLB_DIV_VALUE: ${{ vars.MLB_DIV_VALUE_B }}
+        run: |
+          import os
+
+          div_value = int(os.environ['MLB_DIV_VALUE'])
+
+          if div_value >= 5:
+            div_value = 0
+
+          div_value += 1
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+              print(f'div_value={div_value}', file=fh)
+
+      - uses: actions/checkout@v3
+      - name: Update division value
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
+        run: gh variable set MLB_DIV_VALUE --body ${{ steps.choose_div.outputs.div_value }}
+                   
+  gather-plot:
+    needs: determine-div
+    uses: hockey-stats/chart-plotting/.github/workflows/plot_mlb_graphical_standings.yml@main
+    with:
+      division: ${{ needs.determine-div.outputs.div_value }}
+    permissions:
+      actions: write
+      contents: read
+
+  tweet-plot:
+    runs-on: ubuntu-latest
+    needs: [gather-plot, determine-div]
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
+      API_SECRET: ${{ secrets.API_KEY_SECRET }}
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+      BSKY_LOGIN: ${{ secrets.BSKY_LOGIN }}
+      BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Download Charts
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.gather-plot.outputs.plot_artifact_name }}
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+       
+      - name: Install Requirements
+        run: pip install -r requirements.txt
+
+      - name: Get division name
+        id: div_name
+        shell: python
+        env:
+          MLB_DIV_VALUE: ${{ vars.MLB_DIV_VALUE_B }}
+        run: |
+          import os
+
+          div_value = int(os.environ['MLB_DIV_VALUE'])
+
+          divisions = {
+            0: 'American League East',
+            1: 'American League West',
+            2: 'American League Central',
+            3: 'National League East',
+            4: 'National League West',
+            5: 'National League Central',
+          }
+
+          hashtags = {
+            0: '#BlueJays #RedSox #Yankees #Rays #Orioles',
+            1: '#Mariners #Astros #Angels #Rangers #Athletics',
+            2: '#Guardians #Tigers #Royals #Twins #WhiteSox',
+            3: '#Marlins #Nationals #Braves #Mets #Phillies',
+            4: '#Padres #Rockies #Giants #Dodgers #Diamondbacks',
+            5: '#Cardinals #Brewers #Cubs #Reds #Pirates'
+          }
+
+          div_name = divisions[div_value]
+          hashtag = hashtags[div_value]
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+              print(f'div_name={div_name}', file=fh)
+              print(f'hashtag={hashtag}', file=fh)
+
+      - name: Send Skeet
+        run: |
+          python3 skeet_picture.py -i mlb_graphical_standings.png -t "Graphical Standings for ${{ steps.div_name.outputs.div_name }} Teams #MLB ${{ steps.div_name.outputs.hashtag }}";
