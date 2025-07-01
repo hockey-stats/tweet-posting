@@ -36,7 +36,7 @@ jobs:
       - name: Update division value
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
-        run: gh variable set MLB_DIV_VALUE --body ${{ steps.choose_div.outputs.div_value }}
+        run: gh variable set MLB_DIV_VALUE_B --body ${{ steps.choose_div.outputs.div_value }}
                    
   gather-plot:
     needs: determine-div
