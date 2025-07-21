@@ -8,7 +8,7 @@ Login info for BlueSky saved as repository variables in GitHub
 
 import os
 import argparse
-from atproto import Client, client_utils
+from atproto import Client, client_utils, models
 from atproto_client.models.app.bsky.embed.defs import AspectRatio
 
 
@@ -70,11 +70,21 @@ def send_skeet(image, post_body, alt_text, aspect_ratio):
               f"Recieved: '{aspect_ratio}'")
         raise e
 
-    with open(image, 'rb') as f:
-        img_data = f.read()
+    if image.split('.')[-1] == 'mp4':
+        with open(image, 'rb') as f:
+            vid_data = f.read()
 
-        client.send_image(text=post_body, image=img_data, image_alt=alt_text, 
-                          image_aspect_ratio=image_aspect_ratio)
+        blob = client.upload_blob(vid_data)
+        client.send_post(
+            text=post_body,
+            embed=models.AppBskyEmbedVideo.Main(video=blob.blob, alt=alt_text)
+        )
+
+    else:
+        with open(image, 'rb') as f:
+            img_data = f.read()
+            client.send_image(text=post_body, image=img_data, image_alt=alt_text,
+                              image_aspect_ratio=image_aspect_ratio)
 
 
 def main(image, text, aspect_ratio):
