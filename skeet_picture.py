@@ -77,7 +77,7 @@ def send_skeet(image, post_body, alt_text, aspect_ratio):
         blob = client.upload_blob(vid_data)
         client.send_post(
             text=post_body,
-            embed=models.AppBskyEmbedVideo.Main(video=blob.blob, alt=alt_text)
+            embed=models.AppBskyEmbedVideo.Main(video=blob.blob, alt=alt_text, aspect_ratio=image_aspect_ratio)
         )
 
     else:
