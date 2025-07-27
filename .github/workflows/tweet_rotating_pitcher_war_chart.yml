@@ -50,7 +50,7 @@ jobs:
     uses: hockey-stats/chart-plotting/.github/workflows/plot_pitcher_war.yml@main
     with:
       team: ${{ needs.determine-team.outputs.team }}
-      minimum_abs: 100
+      minimum_ips: 10
 
   tweet-plot:
     runs-on: ubuntu-latest
