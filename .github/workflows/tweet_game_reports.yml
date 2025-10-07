@@ -10,9 +10,6 @@ jobs:
   get-last-game-id:
     runs-on: ubuntu-latest
   
-    outputs:
-      last_game_id: ${{ steps.get_id.outputs.last_game_id}}
-
     steps:
       - name: Get last game id
         id: get_id
@@ -20,6 +17,8 @@ jobs:
           LAST_GAME_ID: ${{ vars.LAST_GAME_REPORT_ID }}
         run: echo "last_game_ID=$LAST_GAME_ID" >> "$GITHUB_OUTPUT"
 
+    outputs:
+      last_game_id: ${{ steps.get_id.outputs.last_game_id}}
 
   gather-plot:
     permissions:
@@ -35,7 +34,7 @@ jobs:
   tweet-plot:
     runs-on: ubuntu-latest
     needs: gather-plot
-    if: needs.gather-plot.outputs.game_id != 'NONE'
+    if: needs.gather-plot.outputs.game_id != 0
     
     env:
       API_KEY: ${{ secrets.API_KEY }}

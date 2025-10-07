@@ -33,8 +33,8 @@ def parse_text(text):
     text_builder.text(plain_text + '\n\n')  # Also add newlines so that the hashtags are alone
 
     # Add link to explainer post for MLB charts
-    text_builder.text('For an explanation of the charts, click ')
-    text_builder.link('here', 'https://tinyurl.com/4499bd3r').text('\n\n')
+   # text_builder.text('For an explanation of the charts, click ')
+   # text_builder.link('here', 'https://tinyurl.com/4499bd3r').text('\n\n')
 
     # Now get all the hashtags, e.g. if the input text is
     #"Game Report - Montreal Canadiens vs Tampa Bay Lightning - 2025-02-09 #GoHabsGo #GoBolts #NHL"
