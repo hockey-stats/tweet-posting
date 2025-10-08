@@ -69,7 +69,6 @@ jobs:
           PYTHONPATH: ${ github.workspace }
         run: |
           ls -lrt;
-          ls -lrt game-plot/;
           FILENAME=$(ls ./*png);
           python3 get_game_details.py $FILENAME
 
