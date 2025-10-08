@@ -86,4 +86,4 @@ jobs:
           GAME_ID: ${{ needs.gather-plot.outputs.game_id }}
           PREV_ID: ${{ vars.LAST_GAME_REPORT_ID }}
         run: |
-          gh variable set LAST_GAME_REPORT_ID --body "${PREV_ID},${GAME_ID}"
+          gh variable set LAST_GAME_REPORT_ID --body "${GAME_ID}"
