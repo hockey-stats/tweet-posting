@@ -30,6 +30,7 @@ jobs:
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_game_reports.yml@main
     with:
       last_game_id: ${{ needs.get-last-game-id.outputs.last_game_id }}
+    secrets: inherit
 
   tweet-plot:
     runs-on: ubuntu-latest
