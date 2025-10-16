@@ -41,7 +41,7 @@ jobs:
       #
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i team-plots/xg_ratios.png -t "5v5 Expected Goal Share for all teams #NHL" -a '24,12';
+          python3 skeet_picture.py -i team-plots/xg_ratios.png -t "5v5 Expected Goal Share for all teams #NHL";
       #
       - name: Send Tweet
         run: |
