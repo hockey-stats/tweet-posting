@@ -10,7 +10,7 @@ jobs:
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_skater_points.yml@main
     with:
       team: 'ALL'
-      minimum_icetime: 100
+      minimum_icetime: 50
     secrets: inherit
 
   tweet-plot:
