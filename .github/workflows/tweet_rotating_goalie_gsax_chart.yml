@@ -85,7 +85,7 @@ jobs:
       
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i ${TEAM}_gsax.png -t "${{ steps.team_details.outputs.team_full_name }} Game-by-game Goals Saved Above Expected ${{ steps.team_details.outputs.hashtag }} #NHL";
+          python3 skeet_picture.py -i ${TEAM}_gsax.png -a '12, 8' -t "${{ steps.team_details.outputs.team_full_name }} Game-by-game Goals Saved Above Expected ${{ steps.team_details.outputs.hashtag }} #NHL";
 
       - name: Send Tweet
         run: |
