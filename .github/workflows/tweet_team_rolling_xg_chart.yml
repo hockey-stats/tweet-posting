@@ -1,15 +1,46 @@
 name: Tweet Team-Level xG Rolling Averages Multi-Plot
 on:
   schedule:
-    - cron: 0 17 * * */3
+    - cron: 0 17 */2 * *
 
   workflow_dispatch:
     
 jobs:
+  determine-div:
+    runs-on: ubuntu-latest
+
+    outputs:
+      div_value: ${{ steps.choose_div.outputs.div_value }}
+
+    steps:
+      - name: Choose team from variable
+        id: choose_div
+        shell: python
+        env:
+          NHL_DIV_VALUE: ${{ vars.NHL_DIV_VALUE }}
+        run: |
+          import os
+
+          div_value = int(os.environ['NHL_DIV_VALUE'])
+
+          div_value += 1
+
+          if div_value >= 4:
+            div_value = 0
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+            print(f'div_value={div_value}', file=fh)
+
+      - name: Update division value
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
+        run: gh variable set NHL_DIV_VALUE --body ${{ steps.choose_div.outputs.div_value }}
+
   gather-plot:
+    needs: determine-div
     uses: hockey-stats/chart-plotting/.github/workflows/scrape_and_plot_team_xg_rolling_avg.yml@main
     with:
-      year: 2024
+      division: ${{ needs.determine-div.outputs.div_value }}
 
   tweet-plot:
     runs-on: ubuntu-latest
@@ -40,11 +71,42 @@ jobs:
       - name: Install Requirements
         run: pip install -r requirements.txt
       #
+     - name: Get division name
+        id: div_name
+        shell: python
+        env:
+          DIVISION: ${{ needs.determine-div.outputs.div_value }}
+        run: |
+          import os
+
+          div_value = int(os.environ['DIVISION'])
+
+          divisions = {
+            0: 'Atlantic',
+            1: 'Metropolitan',
+            2: 'Pacific',
+            3: 'Central',
+          }
+
+          hashtags = {
+            0: '#LeafsForever #NHLBruins #GoHabsGo #GoSensGo #GoBolts #TimeToHunt #SabreHood #LGRW',
+            1: '#Isles #NYR #LetsGoFlyers #LetsGoPens #NJDevils #ALLCAPS #CBJ #RaiseUp',
+            2: '#VegasBorn #GoKingsGo #Canucks #LetsGoOilers #Flames #FlyTogether #TheFutureIsTeal #SeaKraken',
+            3: '#Blackhawks #Smashville #GoJetsGo #GoAvsGo #TexasHockey #stlblues #UtahHC #mnwild',
+          }
+
+          div_name = divisions[div_value]
+          hashtag = hashtags[div_value]
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+              print(f'div_name={div_name}', file=fh)
+              print(f'hashtag={hashtag}', file=fh)
+      #
       - name: Send Skeet
         run: |
-          python3 skeet_picture.py -i team-rolling-avg-plots/xg_rolling_avg_by_division.png -t "5v5 xG% 10-game rolling average for every team, by division #NHL" -a '16,14';
+          python3 skeet_picture.py -i run_diff_rolling_avg.mp4 -t "5v5 xG% Rolling Averages for ${{ steps.div_name.outputs.div_name }} Teams #NHL ${{ steps.div_name.outputs.hashtag }}";
       #
       - name: Send Tweet
         run: |
-          python3 tweet_picture.py -i team-rolling-avg-plots/xg_rolling_avg_by_division.png -t "5v5 xG% 10-game rolling average for every team, by division #NHL";
+          python3 tweet_picture.py -i run_diff_rolling_avg.mp4 -t "5v5 xG% Rolling Averages for ${{ steps.div_name.outputs.div_name }} Teams #NHL ${{ steps.div_name.outputs.hashtag }}";
     ###
