@@ -32,6 +32,8 @@ jobs:
           with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
               print(f'div_value={div_value}', file=fh)
 
+      # Need to checkout so that gh command recognizes this directory as a repo
+      - uses: actions/checkout@v4
       - name: Update division value
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
