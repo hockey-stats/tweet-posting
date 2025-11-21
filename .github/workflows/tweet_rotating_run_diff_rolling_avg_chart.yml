@@ -32,7 +32,6 @@ jobs:
           with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
               print(f'div_value={div_value}', file=fh)
 
-      - uses: actions/checkout@v3
       - name: Update division value
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN_UPDATE_VARIABLES }}
