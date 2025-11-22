@@ -62,8 +62,14 @@ def upload_media(image):
     )
 
     tweepy_api = tweepy.API(tweepy_auth)
-    post = tweepy_api.simple_upload(image)
-    media_id = re.search("media_id=(.+?),", str(post)).group(1)
+
+    # Use a different upload function for mp4 videos
+    if image.split('.')[-1] == 'mp4':
+        response = tweepy_api.media_upload(filename=image, chunked=True,
+                                           media_category='tweet_cideo')
+    else:
+        response = tweepy_api.simple_upload(image)
+    media_id = re.search("media_id=(.+?),", str(response)).group(1)
     print(media_id)
     return media_id
 
