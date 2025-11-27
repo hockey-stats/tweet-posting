@@ -70,7 +70,6 @@ def upload_media(image):
     else:
         response = tweepy_api.simple_upload(image)
     media_id = re.search("media_id=(.+?),", str(response)).group(1)
-    print(media_id)
     return media_id
 
 
