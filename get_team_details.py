@@ -151,8 +151,8 @@ team_dict = {
 		'hashtag': '#Isles'
     },
     'UTA': {
-        'full_name': 'Utah Hockey Club',
-        'hashtag': '#UtahHC'
+        'full_name': 'Utah Mammoth',
+        'hashtag': '#TusksUp'
     }
 }
 
