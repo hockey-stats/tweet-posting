@@ -78,8 +78,10 @@ def main(image, text):
     Main function
     """
 
-    media_id = upload_media(image)
-    send_tweet(media_id=media_id, tweet_body=text)
+    #media_id = upload_media(image)
+    #send_tweet(media_id=media_id, tweet_body=text)
+    print("Elon Musk is a chud")
+    return
 
 
 if __name__ == '__main__':
